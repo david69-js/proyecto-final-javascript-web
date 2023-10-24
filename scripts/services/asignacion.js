@@ -1,4 +1,4 @@
-import { customFetchGetUserById, customFetchGetAll, customFetchPost } from "../helpers/customFetch.js";
+import { customFetchGetById, customFetchGetAll, customFetchPost } from "../helpers/customFetch.js";
 
 const getUsuarioId = async () => {
     let usuarioId = null;
@@ -18,7 +18,7 @@ const renderUser = async () => {
 
     const url = `http://localhost:8080/getUsuario/${usuarioId}`;
     try {
-        user = await customFetchGetUserById(url);
+        user = await customFetchGetById(url);
     } catch (e) {
         console.log(e);
     }
@@ -60,16 +60,15 @@ const asignacionesPerProfile = async () => {
     } catch (e) {
         console.log(e);
     }
-
-    // Obtener todos los checkboxes en la página
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
     asignaciones.forEach((asignacion) => {
         const cursoId = asignacion.cursoId;
+      
         
         // Filtrar los checkboxes que coinciden con el cursoId y usuarioId
         const matchingCheckboxes = Array.from(checkboxes).filter(checkbox => {
-            return checkbox.dataset.id === cursoId && checkbox.dataset.name === usuarioId;
+            return parseInt(checkbox.dataset.id) === cursoId;
         });
 
         matchingCheckboxes.forEach(checkbox => {
@@ -77,16 +76,16 @@ const asignacionesPerProfile = async () => {
             checkbox.disabled = true; // Deshabilitar el checkbox
         });
     });
+    
+   
 }
 
 const asignacionTemplate = (curso) => {
     const elem = document.createElement('div');
     const label = document.createElement('label');
     const checkbox = document.createElement('input');
-    let usuarioId = localStorage.getItem('userId');
     checkbox.type = 'checkbox';
     checkbox.dataset.id = curso.id;
-    checkbox.dataset.name = usuarioId;
     label.textContent = curso.nombreCurso;
     label.appendChild(checkbox);
     elem.appendChild(label);

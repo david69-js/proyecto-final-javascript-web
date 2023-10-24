@@ -1,4 +1,4 @@
-import { customFetchGetUserById, customFetchGetAll, customFetchPost } from "../helpers/customFetch.js";
+import { customFetchGetById, customFetchGetAll } from "../helpers/customFetch.js";
 
 const getUsuarioId = async () => {
     let usuarioId = null;
@@ -18,7 +18,7 @@ const renderUser = async () => {
 
     const url = `http://localhost:8080/getUsuario/${usuarioId}`;
     try {
-        user = await customFetchGetUserById(url);
+        user = await customFetchGetById(url);
     } catch (e) {
         console.log(e);
     }
@@ -32,23 +32,6 @@ const userTemplate = (user) => {
     userName.innerHTML = nombreAlumno;
 }
 
-const renderCursos = async () => {
-    let cursos = [];
-
-    const url = `http://localhost:8080/getCursos`;
-
-    try {
-        cursos = await customFetchGetAll(url);
-    } catch (e) {
-        console.log(e);
-    }
-
-    const asignacionesDiv = document.getElementById('asignaciones');
-    // Itera sobre la lista de cursos y agrega un elemento para cada uno
-    cursos.forEach((curso) => {
-        asignacionesDiv.appendChild(asignacionTemplate(curso));
-    });
-}
 const asignacionesPerProfile = async () => {
     let asignaciones = [];
     let usuarioId = await getUsuarioId();
@@ -61,60 +44,31 @@ const asignacionesPerProfile = async () => {
         console.log(e);
     }
 
-    // Obtener todos los checkboxes en la página
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const asignacionesDiv = document.getElementById('mis-cursos');
+    // Itera sobre la lista de cursos y agrega un elemento para cada uno
 
-    asignaciones.forEach((asignacion) => {
-        const cursoId = asignacion.cursoId;
-        
-        // Filtrar los checkboxes que coinciden con el cursoId y usuarioId
-        const matchingCheckboxes = Array.from(checkboxes).filter(checkbox => {
-            return checkbox.dataset.id === cursoId && checkbox.dataset.name === usuarioId;
-        });
-
-        matchingCheckboxes.forEach(checkbox => {
-            checkbox.checked = true; // Marcar el checkbox
-            checkbox.disabled = true; // Deshabilitar el checkbox
-        });
+    asignaciones.forEach( async (asignacion) => {
+        const url = `http://localhost:8080/getCurso/${asignacion.cursoId}`;
+        let curso = await customFetchGetById(url);
+        asignacionesDiv.appendChild(asignacionTemplate(curso));
     });
+    
 }
 
 const asignacionTemplate = (curso) => {
-    const elem = document.createElement('div');
-    const label = document.createElement('label');
-    const checkbox = document.createElement('input');
-    let usuarioId = localStorage.getItem('userId');
-    checkbox.type = 'checkbox';
-    checkbox.dataset.id = curso.id;
-    checkbox.dataset.name = usuarioId;
-    label.textContent = curso.nombreCurso;
-    label.appendChild(checkbox);
-    elem.appendChild(label);
+    const divElem = document.createElement('div');
+    divElem.dataset.id = curso.id;
+    divElem.classList.add('dropdown-content');
+    const button = document.createElement('button');
+        button.classList.add('dropdown-button');
+        button.textContent = curso.nombreCurso;
+    const informacion = document.createElement('p');
+        informacion.textContent = curso.descripcion;
+        informacion.classList.add('dropdown-panel');
+        divElem.append(button)
+        divElem.append(informacion);
 
-    // Agregar un evento de cambio para el checkbox
-    checkbox.addEventListener('change', async (event) => {
-        const cursoId = event.target.dataset.id;
-
-        let usuarioId = await getUsuarioId();
-        // Realizar una solicitud POST para actualizar el estado del checkbox
-        const updateData = {
-            cursoId: cursoId,
-            usuarioId: usuarioId,
-        };
-
-        const updateUrl = 'http://localhost:8080/saveAsignacion'; // Ajusta la URL según tu API
-        try {
-            await customFetchPost(updateUrl, updateData);
-            checkbox.disabled = true;
-        } catch (e) {
-            console.log(e);
-        }
-    });
-
-    return elem;
+    return divElem;
 }
 
-
-// Llama a las funciones para renderizar el usuario y las asignaciones
-renderCursos();
 renderUser();

@@ -2,7 +2,7 @@ const customFetchGetAll = async (url) =>{
     let response = await fetch(url)
     return response.json();
 }
-const customFetchGetUserById = async (url) =>{
+const customFetchGetById = async (url) =>{
     let response = await fetch(url)
     return response.json();
 }
@@ -30,4 +30,4 @@ const customFetchPost = async (url, data) => {
 };
 
 
-export { customFetchGetAll, customFetchGetUserById, customFetchPost };
+export { customFetchGetAll, customFetchGetById, customFetchPost };
