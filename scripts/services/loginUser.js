@@ -1,4 +1,4 @@
-import { customFetchGetUserById } from "../helpers/customFetch.js";
+import { customFetchGetById } from "../helpers/customFetch.js";
 
 const getUsuarioId = async () => {
     let usuarioId = null;
@@ -18,7 +18,7 @@ const renderUser = async () => {
 
     const url = `http://localhost:8080/getUsuario/${usuarioId}`;
     try {
-        user = await customFetchGetUserById(url);
+        user = await customFetchGetById(url);
     } catch (e) {
         console.log(e);
     }
@@ -26,9 +26,9 @@ const renderUser = async () => {
 }
 
 const userTemplate = (user) => {
-    const { nombreAlumno } = user;
+    const { nombreAlumno, esAdmin } = user;
     const userName = document.getElementById('userName');
-    userName.innerHTML = nombreAlumno;
+    userName.innerHTML = `${ esAdmin ? 'Profesor@' : ' ' }` + nombreAlumno;
 }
 
 renderUser();
