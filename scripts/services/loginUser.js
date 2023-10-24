@@ -30,5 +30,13 @@ const userTemplate = (user) => {
     const userName = document.getElementById('userName');
     userName.innerHTML = `${ esAdmin ? 'Profesor@' : ' ' }` + nombreAlumno;
 }
-
-renderUser();
+const renderAdmin = () => {
+    const userName = document.getElementById('userName');
+    userName.innerHTML = "Admin";
+}
+let usuarioTemplate = await getUsuarioId();
+if (usuarioTemplate == "admin") {
+    renderAdmin();
+}else{
+    renderUser();
+}
