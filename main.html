@@ -15,11 +15,18 @@
             <img src="imagenes/logo3.png" alt="Logo" width="200">
     
             <ul id="menu">
-                <li><a href="#">HOME</a></li>
-                <li><a href="./pages/cursos.html">CURSOS</a></li>
-                <li><a href="./pages/asignaciones.html">ASIGNACIONES</a></li>
-                <li><a href="./pages/tema.html">TEMA</a></li>
-                <li><a href="#">PENSUM</a></li>
+                <li class="user"><a href="#">HOME</a></li>
+                <li class="user"><a href="./pages/cursos.html">CURSOS</a></li>
+                <li class="user"><a href="./pages/asignaciones.html">ASIGNACIONES</a></li>
+                <li class="user"><a href="./pages/tema.html">TEMA</a></li>
+                <li class="user"><a href="#">PENSUM</a></li>
+
+                <li class="admin"><a href="#">HOME</a></li>
+                <li class="admin"><a href="./pagesAdmin/verCursos.html">Ver CURSOS</a></li>
+                <li class="admin"><a href="./pagesAdmin/alumnosProfesores.html">Ver Alumnos/Profesores</a></li>
+                <li class="admin"><a href="./pages/tema.html">TEMA</a></li>
+                
+
             </ul>
             <div id="icono1">
                 <img src="imagenes/logo3.png" alt="icono1" width="35" >
@@ -33,5 +40,6 @@
         </div>
     </div>
     <script type="module"  src="./scripts/services/loginUser.js"></script>
+    <script src="./scripts/esAdmin.js"></script>
 </body>
 </html>

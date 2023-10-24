@@ -58,3 +58,6 @@ body {
     width: 100%;
 }
 
+.dn-i{
+    display: none !important;
+}
