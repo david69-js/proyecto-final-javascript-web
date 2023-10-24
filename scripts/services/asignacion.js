@@ -107,6 +107,7 @@ const asignacionTemplate = (curso) => {
             checkbox.disabled = true;
         } catch (e) {
             console.log(e);
+            checkbox.disabled = true;
         }
     });
 

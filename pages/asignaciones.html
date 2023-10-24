@@ -7,26 +7,26 @@
     <link rel="stylesheet" href="/styles/navegacion.css">
 </head>
 <body>
-    <h1>UMG INICIO</h1>
-
-    <div id="sidebar">
-        <div id="logo">
-            <img src="/imagenes/logo3.png" alt="Logo" width="200">
+    <div class="container">
+        <div id="sidebar">
+            <div id="logo">
+                <img src="/imagenes/logo3.png" alt="Logo" width="200">
+            </div>
+            <ul id="menu">
+                <li><a href="../main.html">HOME</a></li>
+                <li><a href="./cursos.html">CURSOS</a></li>
+                <li><a href="#">ASIGNACIONES</a></li>
+                <li><a href="./tema.html">TEMA</a></li>
+                <li><a href="#">PENSUM</a></li>
+            </ul>
+            
         </div>
-        <ul id="menu">
-            <li><a href="../main.html">HOME</a></li>
-            <li><a href="./cursos.html">CURSOS</a></li>
-            <li><a href="#">ASIGNACIONES</a></li>
-            <li><a href="./tema.html">TEMA</a></li>
-            <li><a href="#">PENSUM</a></li>
-        </ul>
-        
-    </div>
-    <button id="atras-button">☰</button>
-    <div id="contenido">
-        <h1>Hola <span id="userName">Cargando...</span> estos son tus cursos.</h1>
-        <p>Importante puedes visitar <a href="./cursos.html">mis cursos</a> para ver todos tus cursos, los cursos que se ven grises son los que ya tienes asi</p>
-        <div id="asignaciones"></div>
+        <button id="atras-button">☰</button>
+        <div id="contenido">
+            <h1>Hola <span id="userName">Cargando...</span> estos son tus cursos.</h1>
+            <p>Importante puedes visitar <a href="./cursos.html">mis cursos</a> para ver todos tus cursos, los cursos que se ven grises son los que ya tienes asi</p>
+            <div id="asignaciones"></div>
+        </div>
     </div>
     <script type="module"  src="../scripts/services/asignacion.js"></script>
 </body>
