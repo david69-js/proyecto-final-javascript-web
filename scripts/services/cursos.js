@@ -53,22 +53,32 @@ const asignacionesPerProfile = async () => {
         asignacionesDiv.appendChild(asignacionTemplate(curso));
     });
     
+    
 }
 
 const asignacionTemplate = (curso) => {
     const divElem = document.createElement('div');
     divElem.dataset.id = curso.id;
     divElem.classList.add('dropdown-content');
+
     const button = document.createElement('button');
         button.classList.add('dropdown-button');
         button.textContent = curso.nombreCurso;
+
+    const panel = document.createElement('div');
+        panel.classList.add('dropdown-panel');
+
     const informacion = document.createElement('p');
         informacion.textContent = curso.descripcion;
-        informacion.classList.add('dropdown-panel');
-        divElem.append(button)
-        divElem.append(informacion);
+
+
+        divElem.append(button);
+        divElem.append(panel);
+        panel.append(informacion);
 
     return divElem;
 }
+
+
 
 renderUser();
