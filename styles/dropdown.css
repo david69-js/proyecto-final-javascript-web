@@ -35,3 +35,7 @@
     flex-direction: column;
     gap: 20px;
   }
+  #create-curso-btn{
+    margin-top: 20px;
+    padding: 10px 20px;
+  }

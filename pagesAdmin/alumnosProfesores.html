@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIUMG</title> 
     <link rel="stylesheet" href="/styles/navegacion.css">
+    <link rel="stylesheet" href="/styles/ventanas.css">
 </head>
 <body>
     <div class="container">
@@ -21,14 +22,31 @@
             </ul>
             
         </div>
-        <button id="atras-button">☰</button>
         <div id="contenido">
             <h1>Hola <span id="userName">Cargando...</span> estos son tus cursos.</h1>
             <p>Importante puedes visitar <a href="./cursos.html">mis cursos</a> para ver todos tus cursos, los cursos que se ven grises son los que ya tienes asi</p>
-            <div id="asignaciones"></div>
+            
+            <div class="tab-container">
+                <div class="tab">
+                    <button class="tablinks" data-tab="tab1">ALUMNOS</button>
+                    <button class="tablinks" data-tab="tab2">PROFESORES</button>
+                </div>
+        
+                <div id="tab1" class="tabcontent">
+                    <h2>ALUMNOS</h2>
+                    <div id="alumnos-container" class="alumnos-container"></div>
+                </div>
+        
+                <div id="tab2" class="tabcontent">
+                    <h2>PROFESORES</h2>
+                    <div id="profesores-container" class="profesores-container"></div>
+                </div>
+            </div>
+
+
         </div>
     </div>
-    <script type="module"  src="../scripts/services/asignacion.js"></script>
+    <script type="module"  src="../scripts/adminServices/alumnosProfesores.js"></script>
     <script src="../scripts/esAdmin.js"></script>
 </body>
 </html>
