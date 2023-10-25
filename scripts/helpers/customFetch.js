@@ -29,5 +29,44 @@ const customFetchPost = async (url, data) => {
     }
 };
 
+const customFetchDelete = async (url) => {
+    try {
+        const response = await fetch(url, {
+            method: 'DELETE',
+        });
 
-export { customFetchGetAll, customFetchGetById, customFetchPost };
+        if (response.ok) {
+            // Si la eliminación fue exitosa, puedes devolver un mensaje o cualquier otra información necesaria.
+            return 'Eliminación exitosa';
+        } else {
+            throw new Error(`Error en la solicitud DELETE: ${response.status} - ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+const customFetchPut = async (url, data) => {
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            return responseData;
+        } else {
+            throw new Error(`Error en la solicitud PUT: ${response.status} - ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+export { customFetchGetAll, customFetchGetById, customFetchPost, customFetchDelete, customFetchPut };

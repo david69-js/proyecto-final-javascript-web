@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIUMG</title> 
     <link rel="stylesheet" href="/styles/navegacion.css">
+    <link rel="stylesheet" href="/styles/dropdown.css">
 </head>
 <body>
     <div class="container">
@@ -24,9 +25,28 @@
         <div id="contenido">
             <h1>Hola <span id="userName">Cargando...</span> estos son todos los cursos disponibles</h1>
             <div id="cursos-disponibles"></div>
+
+            <div class="actualizarcursos dn-i">
+                <h3>Actualizar Curso</h3>
+               
+                    <div class="form-group">
+                        <label for="nombreCurso">Nuevo nombre del curso</label>
+                        <input type="text" id="nombreCurso" name="nombreCurso" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreCurso">Nueva descripcion del curso</label>
+                        <textarea name="descripcionCurso" id="nombreDescripcion" cols="30" rows="5"></textarea>
+                    </div>
+                    <input type="hidden" id="input-id-curso" value="">
+                    <div class="form-group">
+                        <button type="button" name="actualizar curso" id="actualizar-informacion" >Actualizar Curso</button>
+                    </div>
+                
+            </div>
         </div>
     </div>
     <script type="module"  src="../scripts/adminServices/verCursos.js"></script>
     <script src="../scripts/esAdmin.js"></script>
+    <script src="../scripts/dropdown.js"></script>
 </body>
 </html>
