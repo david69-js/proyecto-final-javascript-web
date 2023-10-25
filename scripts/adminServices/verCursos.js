@@ -1,4 +1,4 @@
-import { customFetchGetAll, customFetchPut, customFetchDelete } from "../helpers/customFetch.js";
+import { customFetchGetAll, customFetchPut, customFetchPost } from "../helpers/customFetch.js";
 
 const getUsuarioId = async () => {
     let usuarioId = null;
@@ -55,12 +55,40 @@ const cursosTemplate = (curso) => {
         divElem.append(panel);
         panel.append(informacion);
         panel.append(buttonContainer);
-        buttonContainer.append(eliminarButton);
+
         buttonContainer.append(actualizarButton);
 
     return divElem;
 }
 
+
+const crearCurso = async () => {
+    let nombreValor = document.querySelector('#nombreCursoC').value;
+    let descripcioneValor = document.querySelector('#descripcionC').value;
+
+    // Realiza validaciones de datos antes de enviar la solicitud
+    if (!nombreValor || !descripcioneValor) {
+        alert('Por favor, completa todos los campos.');
+        return;
+    }
+
+    let url = `http://localhost:8080/saveCurso`;
+    const dataToCreate = {
+        nombreCurso: nombreValor,
+        descripcion: descripcioneValor
+    };
+
+    try {
+        const createData = await customFetchPost(url, dataToCreate);
+        console.log('Recurso creado con éxito:', createData);
+        location.reload();
+    } catch (error) {
+        console.error('Error al crear el recurso:', error);
+        location.reload();
+    }
+}
+
+document.querySelector('#crear-curso').addEventListener('click', crearCurso);
 
 const actualizarRecurso = async (id, descripcion, nombre ) => {
     let contenedor = document.querySelector('.actualizarcursos');
@@ -72,7 +100,7 @@ const actualizarRecurso = async (id, descripcion, nombre ) => {
     descripcionValor.value = descripcion;
     inputHidden.value = id;
 
-    contenedor.classList.remove('dn-i')
+    contenedor.classList.remove('dn-i');
 }
 
 const actualizarInformacion = async () => {
@@ -80,23 +108,35 @@ const actualizarInformacion = async () => {
     let descripcionValor = document.querySelector('#nombreDescripcion').value;
     let inputHidden = document.querySelector('#input-id-curso').value;
 
-    const url = `http://localhost:8080/updateCurso/${inputHidden}`; 
+    // Realiza validaciones de datos antes de enviar la solicitud
+    if (!nombreValor || !descripcionValor) {
+        alert('Por favor, completa todos los campos.');
+        return;
+    }
+
+    const url = `http://localhost:8080/updateCurso/${inputHidden}`;
     const dataToUpdate = {
         nombreCurso: nombreValor,
         descripcion: descripcionValor
-     };
+    };
 
     try {
         const updatedData = await customFetchPut(url, dataToUpdate);
         console.log('Recurso actualizado con éxito:', updatedData);
-        location.reload()
-       
+        location.reload();
     } catch (error) {
         console.error('Error al actualizar el recurso:', error);
-        location.reload()
+        location.reload();
     }
 }
+
 document.querySelector('#actualizar-informacion').addEventListener('click', actualizarInformacion);
+
+
+document.querySelector('#create-curso-btn').addEventListener('click', () =>{
+    let container = document.querySelector('.crearcursos');
+    container.classList.remove('dn-i');
+});
 
 const renderAdmin = () => {
     const userName = document.getElementById('userName');
