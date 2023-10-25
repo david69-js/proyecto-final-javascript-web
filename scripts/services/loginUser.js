@@ -34,6 +34,7 @@ const renderAdmin = () => {
     const userName = document.getElementById('userName');
     userName.innerHTML = "Admin";
 }
+
 let usuarioTemplate = await getUsuarioId();
 if (usuarioTemplate == "admin") {
     renderAdmin();
