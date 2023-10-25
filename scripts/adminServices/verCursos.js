@@ -44,10 +44,6 @@ const cursosTemplate = (curso) => {
     const informacion = document.createElement('p');
         informacion.textContent = curso.descripcion;
 
-    const eliminarButton = document.createElement('button');
-          eliminarButton.textContent = "Eliminar Curso";
-          eliminarButton.dataset.id = curso.id;
-
     const actualizarButton = document.createElement('button');
           actualizarButton.textContent = "Actualizar Curso";
           actualizarButton.dataset.id = curso.id;
@@ -64,6 +60,7 @@ const cursosTemplate = (curso) => {
 
     return divElem;
 }
+
 
 const actualizarRecurso = async (id, descripcion, nombre ) => {
     let contenedor = document.querySelector('.actualizarcursos');

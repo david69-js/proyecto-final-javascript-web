@@ -60,3 +60,6 @@ body {
 .dn-i{
     display: none !important;
 }
+body, html{
+    height: 100%;
+}
