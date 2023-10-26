@@ -8,15 +8,17 @@ body {
     display: grid;
     grid-template-columns: 250px auto;
     height: 100vh;
+    position: fixed;
 }
 #sidebar {
+    
     background-color: #333;
     color: #fff;
 }
 
 #logo {
     text-align: center;
-    padding: 20px 0;
+    padding: 20 px 0;
 }
 
 #menu {
@@ -40,10 +42,17 @@ body {
 
 #contenido {
     width: 80%;
-    margin: 0 auto;
+    margin: 100px;   
+
+}
+p {
+    line-height: 1.6; /* Aumenta el espaciado entre líneas para mejorar la legibilidad */
+    margin-bottom: 20px; /* Añade un margen inferior para separar los párrafos */
 }
 
+
 #atras-button {
+    
     background-color: #333;
     border: none;
     color: #fff;
@@ -51,7 +60,19 @@ body {
     cursor: pointer;
     position: absolute;
     top: 20px;
-    left: 250px;
+    left: 300px;
+    position: fixed;
+    border-radius: 5%;
+}
+#icono1 {
+    margin: 0 30px ; /* Ajusta el margen según tus preferencias */
+}
+#icono1 img{
+    border-radius: 20%; /* Establece un radio de borde del 50% para hacerlo circular */
+    width: 50px; /* Ajusta el ancho a tu necesidad */
+    height: 50px; /* Ajusta la altura a tu necesidad */
+    margin-left: 5px;    
+    
 }
 #menu li {
     height: 50px;
@@ -62,4 +83,35 @@ body {
 }
 body, html{
     height: 100%;
+}
+.pensum {
+    flex-basis: 75%;
+    padding: 50px;
+    margin-left: 255px;
+    
+    border: 10px solid #ddd; /* Añade un borde alrededor del cuadro */
+    border-radius: 5px; /* Añade esquinas redondeadas al cuadro */
+    background-color: #f9f9f9; /* Cambia el color de fondo del cuadro */
+}
+
+
+h2 {
+    text-align: center;
+    border: 10px solid #ddd; /* Añade un borde alrededor del cuadro */
+    border-radius: 5px; /* Añade esquinas redondeadas al cuadro */
+    background-color: #f9f9f9; /* Cambia el color de fondo del cuadro */
+    
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
 }
