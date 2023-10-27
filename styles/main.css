@@ -1,0 +1,8 @@
+#asignaciones div label {
+    display: flex;
+    /* width: 100%; */
+    /* height: 40px; */
+    background: #b2b2b2;
+    border: 3px solid #b09898;
+    padding: 10px 11px;
+}
